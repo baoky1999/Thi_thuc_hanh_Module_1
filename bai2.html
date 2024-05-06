@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+<h1 id="result"></h1>
+<script>
+    // Đếm số lượng ký tự in hoa trong chuỗi
+    function checkUpperCase(str) {
+        let count = 0;
+        let length = str.length;
+        for (let i = 0; i < length; i++) {
+            if (str[i] >= 'A' && str[i] <= 'Z') {
+                count++;
+            }
+        }
+        if (count > 0) {
+            document.getElementById('result').innerHTML = `Có ${count} ký tự viết hoa trong chuỗi`;
+        } else {
+            alert("The Strings is not contain upper char.");
+        }
+    }
+
+    let string = prompt('Nhập chuỗi cần kiểm tra:');
+    checkUpperCase(string);
+</script>
+</body>
+</html>

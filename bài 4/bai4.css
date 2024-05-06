@@ -1,0 +1,26 @@
+table {
+    border: 3px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+th {
+    border: 3px solid black;
+    border-collapse: collapse;
+    width: 200px;
+    height: 30px;
+}
+td {
+    border: 3px solid black;
+    border-collapse: collapse;
+    width: 200px;
+    height: 30px;
+}
+label {
+    font-size: 20px;
+}
+button {
+    width: 150px;
+    height: 30px;
+    background-color: #1f480d;
+    color: white;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bai4.css">
+    <title>Bài 4</title>
+</head>
+<body>
+<h1>Quản lý điện thoại</h1>
+
+<form>
+    <label for="code">Mã điện thoại :</label>
+    <input id="code" type="text" placeholder="Nhập mã điện thoại">
+    <h1></h1>
+    <label for="name">Tên điện thoại :</label>
+    <input id="name" type="text" placeholder="Nhập tên điện thoại">
+    <h1></h1>
+    <label for="money">Giá tiền điện thoại :</label>
+    <input id="money" type="number" placeholder="Nhâp giá điện thoại">
+    <h1></h1>
+    <label for="producer">Nhà sản xuất :</label>
+    <input id="producer" type="text" placeholder="Nhà sản xuất">
+    <h1></h1>
+    <button type="button" onclick="addPhone()">Thêm sản phẩm</button>
+</form>
+<h2>Danh sách điện thoại hiện đang có</h2>
+<table>
+    <tr>
+        <th>Mã điện thoại</th>
+        <th>Tên điện thoại</th>
+        <th>Giá tiền ($)</th>
+        <th>Nhà sản xuất</th>
+    </tr>
+    <tbody id="list"></tbody>
+</table>
+
+<script>
+    class Phone {
+        constructor(code, name, money, producer) {
+            this.code = code;
+            this.name = name;
+            this.money = money;
+            this.producer = producer;
+        }
+
+        getCode() {
+            return this.code;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getMoney() {
+            return this.money;
+        }
+
+        getProducer() {
+            return this.producer;
+        }
+
+        setCode(code) {
+            this.code = code;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setMoney(money) {
+            this.money = money;
+        }
+
+        setProducer(producer) {
+            this.producer = producer;
+        }
+
+        toString() {
+            return `Mã điện thoại: ${this.code}, Tên điện thoại: ${this.name}, Giá tiền: ${this.money}, Nhà sản xuất: ${this.producer}`;
+        }
+
+    }
+
+    class ShowPhone {
+        constructor(arr) {
+            this.newPhone = arr;
+        }
+
+        showList() {
+            let table = "";
+            for (let i = 0; i < this.newPhone.length; i++) {
+
+                table += "<tr>";
+                table += "<td>";
+                table += this.newPhone[i].code;
+                table += "</td>";
+
+                table += "<td>";
+                table += this.newPhone[i].name;
+                table += "</td>";
+
+                table += "<td>";
+                table += this.newPhone[i].money + "$";
+                table += "</td>";
+
+                table += "<td>";
+                table += this.newPhone[i].producer;
+                table += "</td>";
+            }
+            document.getElementById("list").innerHTML = table;
+        }
+
+
+        add(phone) {
+            this.newPhone.push(phone);
+        }
+
+        clear() {
+            let code = document.getElementById('code').value = '';
+            let name = document.getElementById('name').value = '';
+            let money = document.getElementById('money').value = '';
+            let Producer = document.getElementById('producer').value = '';
+        }
+
+        // sắp xếp tên máy theo thứ tự tăng dần
+        displaySortedPhones() {
+            this.newPhone.slice().sort((a, b) => a.getName().localeCompare(b.getName()));
+        }
+    }
+
+    let phone = new Phone(
+        "IP001",
+        "IPhone 14 Pro Max",
+        "1000",
+        "Apple"
+    );
+
+    let arr = [phone];
+    let showPhone = new ShowPhone(arr);
+    showPhone.showList();
+
+
+    function checkCount(phone) {
+        let count = 0
+        for (let key in phone) {
+            if (phone[key] === '') {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+
+    function addPhone() {
+
+        let code = document.getElementById('code').value;
+        let name = document.getElementById('name').value;
+        let money = document.getElementById('money').value;
+        let producer = document.getElementById('producer').value;
+        let phone = new Phone(code, name, money, producer)
+        let check = checkCount(phone);
+        if (check === 0) {
+            showPhone.add(phone);
+            showPhone.showList();
+            showPhone.displaySortedPhones();
+            showPhone.clear();
+
+        } else {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+        }
+    }
+</script>
+</body>
+</html>
